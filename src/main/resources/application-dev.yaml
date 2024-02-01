@@ -1,0 +1,61 @@
+spring:
+  datasource:
+    url: jdbc:log4jdbc:sqlserver://58.121.116.137:1433;DatabaseName=BW_MES;encrypt=false;trustServerCertificate=false
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    username: mes
+    password: mes
+  security:
+    user:
+      name: admin
+      password: admin
+  activemq:
+    broker-url: tcp://127.0.0.1:61616
+    user: admin
+    password: admin
+    in-memory: true
+    non-blocking-redelivery: false
+    close-timeout: 60
+    send-timeout: 60
+    packages:
+      trust-all: true
+    jms:
+      template:
+        receive-timeout: 300000
+        default-destination: mesTopic
+        subject: "DEV.KR.BW.MES.MESsvr.1"
+        prefix-client-id: "DEV.KR.BW.MES.UI-"
+  jwt:
+    header: "Authorization"
+    secret: bHNtZXNfMjAyM19wcm9qZWN0XzAxMjM0NTY3ODlfMDEyMzQ1Njc4OV8wMTIzNDU2Nzg5XzAxMjM0NTY3ODlfMDEyMzQ1Njc4OQ== # lsmes_2023_project_0123456789_0123456789_0123456789_0123456789_0123456789
+    token-access-validity-in-seconds: 1800 # 30 Minute
+    token-refresh-validity-in-seconds: 7200 # 2 Hour
+  server:
+    #port설정
+    port: 22286
+    error:
+      #에러표시여부
+      include-exception: false
+      #handler path
+      path: /error
+      # 기본처리사용여부
+      whitelabel:
+        enabled: false
+    servlet:
+      encoding:
+        charset: UTF-8
+        force: true
+      session:
+        cookie:
+          http-only: true
+      context-path: "/api"
+      
+#mybatis
+mybatis:
+  configuration:
+    default-executor-type: reuse
+    lazy-loading-enabled: true
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+    jdbc-type-for-null: varchar
+  mapper-locations:
+    - classpath*:mappers/**/*.xml

@@ -1,0 +1,56 @@
+spring:
+  datasource:
+    url: jdbc:log4jdbc:sqlserver://172.31.55.40:1433;DatabaseName=DY_MES;encrypt=true;trustServerCertificate=true
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    username: MES_DEV
+    password: okeT#(839Rb4
+  security:
+    user:
+      name: admin
+      password: admin
+  activemq:
+    broker-url: tcp://127.0.0.1:61616
+    user: admin
+    password: admin
+    in-memory: true
+    non-blocking-redelivery: false
+    close-timeout: 60
+    send-timeout: 60
+    packages:
+      trust-all: true
+    jms:
+      template:
+        receive-timeout: 6000
+        default-destination: mesTopic
+        subject: "PROD.KR.6000.MES.MESsvr.1"
+        prefix-client-id: "PROD.KR.6000.MES.UI-"
+  server:
+    #port설정
+    port: 22286
+    error:
+      #에러표시여부
+      include-exception: false
+      #handler path
+      path: /error
+      # 기본처리사용여부
+      whitelabel:
+        enabled: false
+    servlet:
+      encoding:
+        charset: UTF-8
+        force: true
+      session:
+        cookie:
+          http-only: true
+      context-path: "/api"
+      
+#mybatis
+mybatis:
+  configuration:
+    default-executor-type: reuse
+    lazy-loading-enabled: true
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+    jdbc-type-for-null: varchar
+  mapper-locations:
+    - classpath*:mappers/**/*.xml

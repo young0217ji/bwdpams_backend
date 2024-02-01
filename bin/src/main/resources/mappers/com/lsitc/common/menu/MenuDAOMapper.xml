@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsitc.domain.common.menu.dao.MenuDAO">
+  <select id="selectMenuByConditions"
+    parameterType="com.lsitc.domain.common.menu.entity.MenuEntity"
+    resultType="com.lsitc.domain.common.menu.entity.MenuEntity">
+    SELECT DISTINCT SM.PLANTID
+         , SM.MENUID
+         , SM.MENUNAME
+         , SM.MENUNAME_EN AS MENUNAMEEN
+         , IIF(SM.PARENTSID = '', NULL, SM.PARENTSID) AS PARENTSID
+         , SM.URL
+         , SM.USEFLAG
+         , SM.POSITION
+         , #{roleId} AS ROLEID
+         , SM.ICON_CLASS AS ICONCLASS
+    FROM SF_MENU SM, SF_ROLEMENUMAP SRM, SF_ROLE SR
+    WHERE SM.USEFLAG = #{useFlag}
+    AND SM.MENUID = SRM.MENUID
+    AND SM.MENUTYPE = 'MES'
+    AND SRM.ROLEID IN (SELECT * FROM STRING_SPLIT(#{roleId}, ','))
+    AND SRM.PLANTID = SR.PLANTID
+    AND SRM.ROLEID = SR.ROLEID
+    AND SR.ROLETYPE = 'MENU'
+    ORDER BY SM.POSITION
+  </select>
+  
+  <select id="selectMenuById"
+    parameterType="com.lsitc.domain.common.menu.entity.MenuEntity"
+    resultType="com.lsitc.domain.common.menu.entity.MenuEntity">
+    SELECT DISTINCT SM.PLANTID
+         , SM.MENUID
+         , SM.MENUNAME
+         , SM.MENUNAME_EN AS MENUNAMEEN
+         , IIF(SM.PARENTSID = '', NULL, SM.PARENTSID) AS PARENTSID
+         , SM.URL
+         , SM.USEFLAG
+         , SM.POSITION
+         , '' AS ROLEID
+         , SM.ICON_CLASS AS ICONCLASS
+    FROM SF_MENU SM
+    WHERE SM.USEFLAG = #{useFlag}
+    AND SM.MENUID = #{menuID}
+    AND SM.MENUTYPE = 'MES'
+    ORDER BY SM.POSITION
+  </select>
+
+  <select id="selectAll"
+    resultType="com.lsitc.domain.common.menu.entity.MenuEntity">
+    SELECT DISTINCT SM.PLANTID
+         , SM.MENUID
+         , SM.MENUNAME
+         , SM.MENUNAME_EN AS MENUNAMEEN
+         , IIF(SM.PARENTSID = '', NULL, SM.PARENTSID) AS PARENTSID
+         , SM.URL
+         , SM.USEFLAG
+         , SM.POSITION
+         , '' AS ROLEID
+         , SM.ICON_CLASS AS ICONCLASS
+    FROM SF_MENU SM
+    WHERE SM.USEFLAG = #{useFlag}
+    AND SM.MENUTYPE = 'MES'
+    <!-- 권한별 메뉴 목록 실패시 전체 메뉴 Load 되지 않도록 하기 위한 추가 조건 -->
+    AND 1 != 1
+    ORDER BY SM.POSITION
+  </select>
+
+<!--  <insert id="insertMenuList"
+    parameterType="com.lsitc.domain.common.menu.entity.MenuEntity">
+    INSERT INTO sf_menu
+    ( name
+    , english_name
+    , parents_id
+    , url
+    , is_used
+    , sort_sequence
+    , role_id
+    , icon_class
+    , created_by
+    , created_date
+    , last_modified_by
+    , last_modified_date)
+    VALUES
+    <foreach collection="list" item="item" separator=",">
+      ( #{item.name}
+      , #{item.englishName}
+      , #{item.parentsId}
+      , #{item.url}
+      , #{item.isUsed}
+      , #{item.sortSequence}
+      , #{item.roleId}
+      , #{item.iconClass}
+      , #{item.createdBy}
+      , #{item.createdDate}
+      , #{item.lastModifiedBy}
+      , #{item.lastModifiedDate})
+    </foreach>
+  </insert>
+
+  <update id="updateMenuById"
+    parameterType="com.lsitc.domain.common.menu.entity.MenuEntity">
+    <foreach item="item" collection="list" separator=";">
+    UPDATE sf_menu
+    SET name               = #{item.name}
+      , english_name       = #{item.englishName}
+      , parents_id         = #{item.parentsId}
+      , url                = #{item.url}
+      , is_used            = #{item.isUsed}
+      , sort_sequence      = #{item.sortSequence}
+      , role_id            = #{item.roleId}
+      , icon_class         = #{item.iconClass}
+      , last_modified_by   = #{item.lastModifiedBy}
+      , last_modified_date = #{item.lastModifiedDate}
+    WHERE id = #{item.id}
+    </foreach>
+  </update>
+
+    <update id="updateMenuByParentsId"
+            parameterType="com.lsitc.domain.common.menu.entity.MenuEntity">
+        <foreach item="item" collection="list" separator=";">
+            UPDATE sf_menu
+            SET  role_id = #{item.roleId}
+            , last_modified_by   = #{item.lastModifiedBy}
+            , last_modified_date = #{item.lastModifiedDate}
+            WHERE parents_id = #{item.id}
+        </foreach>
+    </update>
+  
+  <insert id="insertMenuWithId"
+    parameterType="com.lsitc.domain.common.menu.entity.MenuEntity">
+    INSERT INTO sf_menu
+    ( id
+    , name
+    , english_name
+    , parents_id
+    , url
+    , is_used
+    , sort_sequence
+    , role_id
+    , icon_class
+    , created_by
+    , created_date
+    , last_modified_by
+    , last_modified_date)
+    VALUES
+    <foreach collection="list" item="item" separator=",">
+      ( #{item.id}
+      , #{item.name}
+      , #{item.englishName}
+      , #{item.parentsId}
+      , #{item.url}
+      , #{item.isUsed}
+      , #{item.sortSequence}
+      , #{item.roleId}
+      , #{item.iconClass}
+      , #{item.createdBy}
+      , #{item.createdDate}
+      , #{item.lastModifiedBy}
+      , #{item.lastModifiedDate})
+    </foreach>
+  </insert>
+
+  <delete id="deleteMenuById"
+    parameterType="com.lsitc.domain.common.menu.entity.MenuEntity">
+    DELETE
+    FROM sf_menu
+    WHERE
+    <foreach collection="list" item="item" separator="OR">
+        id = #{item.id}
+    </foreach>
+  </delete>-->
+
+</mapper>

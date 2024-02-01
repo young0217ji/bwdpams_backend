@@ -1,0 +1,85 @@
+2024-01-14 10:52:53 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 58543913ms elapsed since last write check.
+2024-01-14 10:52:53 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 10:52:55 [DEBUG ] [QuartzSchedulerThread:291] - batch acquisition of 0 triggers
+2024-01-14 10:53:00 [WARN  ] [HikariPool:787] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=20h16m19s314ms928µs700ns).
+2024-01-14 10:53:00 [DEBUG ] [HikariPool:421] - HikariPool-1 - Before cleanup stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 10:53:00 [DEBUG ] [HikariPool:421] - HikariPool-1 - After cleanup  stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 10:53:00 [DEBUG ] [HikariPool:517] - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-01-14 10:53:01 [DEBUG ] [PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@24389bec: (connection has passed maxLifetime)
+2024-01-14 10:53:01 [DEBUG ] [HikariPool:728] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@46d388db
+2024-01-14 10:53:03 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10002ms elapsed since last write check.
+2024-01-14 10:53:03 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:46:43 [DEBUG ] [AbstractInactivityMonitor:115] - 68976360ms elapsed since last read check.
+2024-01-14 13:46:45 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10422448ms elapsed since last write check.
+2024-01-14 13:46:45 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:46:55 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10000ms elapsed since last write check.
+2024-01-14 13:46:55 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:46:55 [DEBUG ] [QuartzSchedulerThread:291] - batch acquisition of 0 triggers
+2024-01-14 13:47:03 [WARN  ] [HikariPool:787] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h54m2s448ms548µs400ns).
+2024-01-14 13:47:03 [DEBUG ] [HikariPool:421] - HikariPool-1 - Before cleanup stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:47:03 [DEBUG ] [HikariPool:421] - HikariPool-1 - After cleanup  stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:47:03 [DEBUG ] [HikariPool:517] - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-01-14 13:47:03 [DEBUG ] [PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@46d388db: (connection has passed maxLifetime)
+2024-01-14 13:47:03 [DEBUG ] [HikariPool:728] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3c0359b8
+2024-01-14 13:47:05 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10000ms elapsed since last write check.
+2024-01-14 13:47:05 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:47:13 [DEBUG ] [AbstractInactivityMonitor:115] - 30001ms elapsed since last read check.
+2024-01-14 13:47:15 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10003ms elapsed since last write check.
+2024-01-14 13:47:15 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:47:21 [DEBUG ] [QuartzSchedulerThread:291] - batch acquisition of 0 triggers
+2024-01-14 13:47:25 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10006ms elapsed since last write check.
+2024-01-14 13:47:25 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:47:33 [DEBUG ] [HikariPool:421] - HikariPool-1 - Before cleanup stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:47:33 [DEBUG ] [HikariPool:421] - HikariPool-1 - After cleanup  stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:47:33 [DEBUG ] [HikariPool:517] - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-01-14 13:47:35 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10004ms elapsed since last write check.
+2024-01-14 13:47:35 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:47:44 [DEBUG ] [AbstractInactivityMonitor:115] - 31038ms elapsed since last read check.
+2024-01-14 13:47:46 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 11023ms elapsed since last write check.
+2024-01-14 13:47:46 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:47:51 [DEBUG ] [QuartzSchedulerThread:291] - batch acquisition of 0 triggers
+2024-01-14 13:47:56 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10015ms elapsed since last write check.
+2024-01-14 13:47:56 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:48:04 [DEBUG ] [HikariPool:421] - HikariPool-1 - Before cleanup stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:48:04 [DEBUG ] [HikariPool:421] - HikariPool-1 - After cleanup  stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:48:04 [DEBUG ] [HikariPool:517] - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-01-14 13:48:06 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10005ms elapsed since last write check.
+2024-01-14 13:48:06 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:48:14 [DEBUG ] [AbstractInactivityMonitor:115] - 30000ms elapsed since last read check.
+2024-01-14 13:48:16 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10015ms elapsed since last write check.
+2024-01-14 13:48:16 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:48:20 [DEBUG ] [QuartzSchedulerThread:291] - batch acquisition of 0 triggers
+2024-01-14 13:48:26 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10000ms elapsed since last write check.
+2024-01-14 13:48:26 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:48:34 [DEBUG ] [HikariPool:421] - HikariPool-1 - Before cleanup stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:48:34 [DEBUG ] [HikariPool:421] - HikariPool-1 - After cleanup  stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:48:34 [DEBUG ] [HikariPool:517] - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-01-14 13:48:36 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10000ms elapsed since last write check.
+2024-01-14 13:48:36 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:48:44 [DEBUG ] [AbstractInactivityMonitor:115] - 30001ms elapsed since last read check.
+2024-01-14 13:48:47 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 11031ms elapsed since last write check.
+2024-01-14 13:48:47 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:48:48 [DEBUG ] [QuartzSchedulerThread:291] - batch acquisition of 0 triggers
+2024-01-14 13:48:57 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10000ms elapsed since last write check.
+2024-01-14 13:48:57 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:49:05 [DEBUG ] [HikariPool:421] - HikariPool-1 - Before cleanup stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:49:05 [DEBUG ] [HikariPool:421] - HikariPool-1 - After cleanup  stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:49:05 [DEBUG ] [HikariPool:517] - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-01-14 13:49:07 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10000ms elapsed since last write check.
+2024-01-14 13:49:07 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:49:15 [DEBUG ] [AbstractInactivityMonitor:115] - 31029ms elapsed since last read check.
+2024-01-14 13:49:15 [DEBUG ] [QuartzSchedulerThread:291] - batch acquisition of 0 triggers
+2024-01-14 13:49:17 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10000ms elapsed since last write check.
+2024-01-14 13:49:17 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:49:25 [INFO  ] [tempScheduler:17] - 스케쥴러 테스트 2024-01-14 01:49:25
+2024-01-14 13:49:27 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10001ms elapsed since last write check.
+2024-01-14 13:49:27 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:49:35 [DEBUG ] [HikariPool:421] - HikariPool-1 - Before cleanup stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:49:35 [DEBUG ] [HikariPool:421] - HikariPool-1 - After cleanup  stats (total=1, active=0, idle=1, waiting=0)
+2024-01-14 13:49:35 [DEBUG ] [HikariPool:517] - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-01-14 13:49:37 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 10000ms elapsed since last write check.
+2024-01-14 13:49:37 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
+2024-01-14 13:49:43 [DEBUG ] [QuartzSchedulerThread:291] - batch acquisition of 0 triggers
+2024-01-14 13:49:45 [DEBUG ] [AbstractInactivityMonitor:115] - 30001ms elapsed since last read check.
+2024-01-14 15:07:01 [DEBUG ] [AbstractInactivityMonitor:150] - WriteChecker: 4643314ms elapsed since last write check.
+2024-01-14 15:07:01 [DEBUG ] [AbstractInactivityMonitor:192] - Running WriteCheck[tcp://127.0.0.1:61616]
