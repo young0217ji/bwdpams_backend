@@ -18,7 +18,7 @@ spring:
       accept-single-value-as-array: true
   datasource:
     #url: jdbc:mariadb://ap.kfems.net:22285/ls?passwordCharacterEncoding=UTF-8&allowMultiQueries=true
-    url: jdbc:log4jdbc:sqlserver://172.31.55.40:1433;DatabaseName=DY_MES;encrypt=true;trustServerCertificate=true
+    url: jdbc:log4jdbc:sqlserver://172.31.55.40:1433;DatabaseName=BW_MES;encrypt=true;trustServerCertificate=true
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     username: MES_DEV
     password: okeT#(839Rb4
