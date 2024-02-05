@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blws.domain.common.usermenu.dao.UserMenuDAO">
+  <select id="selectUserMenuList"
+    parameterType="com.blws.domain.common.usermenu.entity.UserMenuEntity"
+    resultType="com.blws.domain.common.usermenu.entity.UserMenuEntity">
+    SELECT UM.MENUID, M.MENUNAME, M.URL, UM.MENUSEQUENCE
+    FROM SF_USERMENU UM, SF_MENU M
+    WHERE UM.MENUID = M.MENUID
+    AND UM.PLANTID = #{plantId}
+    AND UM.USERID = #{userId}
+    ORDER BY MENUSEQUENCE
+  </select>
+  
+  <insert id="insertUserMenu" parameterType="com.blws.domain.common.usermenu.entity.UserMenuEntity">
+	  INSERT INTO SF_USERMENU(
+	  	PLANTID,
+	  	USERID,
+	  	MENUID,
+	  	MENUSEQUENCE,
+	  	CREATETIME,
+	  	CREATEUSERID,
+	  	LASTUPDATETIME,
+	  	LASTUPDATEUSERID
+	  )
+	  VALUES(
+	  	#{plantId},
+	  	#{userId},
+	  	#{menuId},
+	  	#{menuSequence},
+	  	GETDATE(),
+	  	#{userId},
+	  	GETDATE(),
+	  	#{userId}
+	  )
+  </insert>
+  <update id="updateUserMenu" parameterType="com.blws.domain.common.usermenu.entity.UserMenuEntity">
+	  UPDATE SF_USERMENU
+	  SET MENUSEQUENCE = #{menuSequence}, LASTUPDATETIME = GETDATE(), LASTUPDATEUSERID = #{userId}
+	  WHERE PLANTID = #{plantId}
+	  AND USERID = #{userId}
+	  AND MENUID = #{menuId}
+  </update>
+  <delete id="deleteUserMenu" parameterType="com.blws.domain.common.usermenu.entity.UserMenuEntity">
+	  DELETE FROM SF_USERMENU
+	  WHERE PLANTID = #{plantId}
+	  AND USERID = #{userId}
+	  AND MENUID = #{menuId}
+  </delete>
+  
+  
+</mapper>
