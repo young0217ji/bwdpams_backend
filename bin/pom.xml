@@ -26,20 +26,20 @@
 
     <repositories>
         <repository>
-            <id>ls-infra</id>
+            <id>blws-infra</id>
             <url>http://ap.kfems.net:22281/repository/maven-infra/</url>
         </repository>
     </repositories>
 
     <distributionManagement>
         <snapshotRepository>
-            <id>ls</id>
-            <name>ls-snapshot</name>
+            <id>blws</id>
+            <name>blws-snapshot</name>
             <url>http://ap.kfems.net:22281/repository/maven-snapshots/</url>
         </snapshotRepository>
         <repository>
-            <id>ls</id>
-            <name>ls-release</name>
+            <id>blws</id>
+            <name>blws-release</name>
             <url>http://ap.kfems.net:22281/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
