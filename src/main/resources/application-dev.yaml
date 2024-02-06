@@ -1,9 +1,10 @@
 spring:
   datasource:
-    url: jdbc:log4jdbc:sqlserver://58.121.116.137:1433;DatabaseName=BW_MES;encrypt=false;trustServerCertificate=false
+    #url: jdbc:log4jdbc:sqlserver://58.121.116.137:1433;DatabaseName=BW_MES;encrypt=false;trustServerCertificate=false
+    url: jdbc:log4jdbc:sqlserver://localhost:1433;DatabaseName=DP_MES;encrypt=false;trustServerCertificate=false
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    username: mes
-    password: mes
+    username: mesdev
+    password: mesdev
   security:
     user:
       name: admin
@@ -31,7 +32,7 @@ spring:
     token-refresh-validity-in-seconds: 7200 # 2 Hour
   server:
     #port설정
-    port: 22286
+    port: 8091
     error:
       #에러표시여부
       include-exception: false
