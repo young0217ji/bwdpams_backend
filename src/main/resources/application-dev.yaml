@@ -23,8 +23,8 @@ spring:
       template:
         receive-timeout: 300000
         default-destination: mesTopic
-        subject: "DEV.KR.BW.MES.MESsvr.1"
-        prefix-client-id: "DEV.KR.BW.MES.UI-"
+        subject: "DEV.KR.G01.MES.TESTsvr.1"
+        prefix-client-id: "DEV.KR.G01.MES.UI-"
   jwt:
     header: "Authorization"
     secret: bHNtZXNfMjAyM19wcm9qZWN0XzAxMjM0NTY3ODlfMDEyMzQ1Njc4OV8wMTIzNDU2Nzg5XzAxMjM0NTY3ODlfMDEyMzQ1Njc4OQ== # lsmes_2023_project_0123456789_0123456789_0123456789_0123456789_0123456789

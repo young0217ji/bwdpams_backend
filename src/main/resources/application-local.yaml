@@ -25,8 +25,8 @@ spring:
       template:
         receive-timeout: 300000
         default-destination: "mesTopic"
-        subject: "DEV.KR.BW.MES.MESsvr.1"
-        prefix-client-id: "DEV.KR.BW.MES.UI-"
+        subject: "DEV.KR.G01.MES.TESTsvr.1"
+        prefix-client-id: "DEV.KR.G01.MES.UI-"
 
   jwt:
     header: Authorization
