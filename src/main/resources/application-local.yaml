@@ -34,7 +34,7 @@ spring:
     token-access-validity-in-seconds: 86400 # 24 Hour 86400
     token-refresh-validity-in-seconds: 604800 # 1 Week 604800
   cors:
-    allowed-origins: 'http://localhost:8080,http://localhost:3000,http://ap.kfems.net:22288,http://localhost:22288,http://localhost:22286,http://localhost:22287,http://ap.kfems.net:22286,http://ap.kfems.net:22287,http://210.90.165.89:22288'
+    allowed-origins: 'http://localhost:8090,http://localhost:8080,http://localhost:3000,http://ap.kfems.net:22288,http://localhost:22288,http://localhost:22286,http://localhost:22287,http://ap.kfems.net:22286,http://ap.kfems.net:22287,http://210.90.165.89:22288'
     allowed-methods: '*'
     allowed-headers: '*'
     exposed-headers: 'authorization'
