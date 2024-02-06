@@ -7,8 +7,8 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="ls-infra" />
-      <option name="name" value="ls-infra" />
+      <option name="id" value="blws-infra" />
+      <option name="name" value="blws-infra" />
       <option name="url" value="http://ap.kfems.net:22281/repository/maven-infra/" />
     </remote-repository>
     <remote-repository>

@@ -3,18 +3,18 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
     <mirrors>
         <mirror>
-            <id>ls-infra</id>
-            <mirrorOf>ls-infra</mirrorOf>
+            <id>blws-infra</id>
+            <mirrorOf>blws-infra</mirrorOf>
             <url>http://ap.kfems.net:22281/repository/maven-infra/</url>
         </mirror>
         <mirror>
-            <id>ls-snapshot</id>
-            <mirrorOf>ls-snapshot</mirrorOf>
+            <id>blws-snapshot</id>
+            <mirrorOf>blws-snapshot</mirrorOf>
             <url>http://ap.kfems.net:22281/repository/maven-snapshots/</url>
         </mirror>
         <mirror>
-            <id>ls-releases</id>
-            <mirrorOf>ls-release</mirrorOf>
+            <id>blws-releases</id>
+            <mirrorOf>blws-release</mirrorOf>
             <url>http://ap.kfems.net:22281/repository/maven-releases/</url>
         </mirror>
     </mirrors>
@@ -24,19 +24,19 @@
             <id>dev</id>
             <repositories>
                 <repository>
-                    <id>ls-infra</id>
+                    <id>blws-infra</id>
                     <url>http://ap.kfems.net:22281/repository/maven-infra/</url>
                 </repository>
                 <repository>
-                    <id>ls-central</id>
+                    <id>blws-central</id>
                     <url>http://ap.kfems.net:22281/repository/maven-central/</url>
                 </repository>
                 <repository>
-                    <id>ls-snapshot</id>
+                    <id>blws-snapshot</id>
                     <url>http://ap.kfems.net:22281/repository/maven-snapshots/</url>
                 </repository>
                 <repository>
-                    <id>ls-releases</id>
+                    <id>blws-releases</id>
                     <url>http://ap.kfems.net:22281/repository/maven-releases/</url>
                 </repository>
             </repositories>
@@ -49,9 +49,9 @@
 
     <servers>
         <server>
-            <id>ls</id>
+            <id>blws</id>
             <username>blws</username>
-            <password>lsmes0201</password>
+            <password>blwsmes0201</password>
         </server>
     </servers>
 </settings>

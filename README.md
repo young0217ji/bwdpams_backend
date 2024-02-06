@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin http://ap.kfems.net:22280/ls-mes/backend.git
+git remote add origin http://ap.kfems.net:22280/blws-mes/backend.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](http://ap.kfems.net:22280/ls-mes/backend/-/settings/integrations)
+- [ ] [Set up project integrations](http://ap.kfems.net:22280/blws-mes/backend/-/settings/integrations)
 
 ## Collaborate with your team
 
@@ -101,18 +101,18 @@ If you have run out of energy or time for your project, put a note at the top of
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
     <mirrors>
         <mirror>
-            <id>ls-infra</id>
-            <mirrorOf>ls-infra</mirrorOf>
+            <id>blws-infra</id>
+            <mirrorOf>blws-infra</mirrorOf>
             <url>http://ap.kfems.net:22281/repository/maven-infra/</url>
         </mirror>
         <mirror>
-            <id>ls-snapshot</id>
-            <mirrorOf>ls-snapshot</mirrorOf>
+            <id>blws-snapshot</id>
+            <mirrorOf>blws-snapshot</mirrorOf>
             <url>http://ap.kfems.net:22281/repository/maven-snapshots/</url>
         </mirror>
         <mirror>
-            <id>ls-releases</id>
-            <mirrorOf>ls-release</mirrorOf>
+            <id>blws-releases</id>
+            <mirrorOf>blws-release</mirrorOf>
             <url>http://ap.kfems.net:22281/repository/maven-releases/</url>
         </mirror>
     </mirrors>
@@ -122,19 +122,19 @@ If you have run out of energy or time for your project, put a note at the top of
             <id>dev</id>
             <repositories>
                 <repository>
-                    <id>ls-infra</id>
+                    <id>blws-infra</id>
                     <url>http://ap.kfems.net:22281/repository/maven-infra/</url>
                 </repository>
                 <repository>
-                    <id>ls-central</id>
+                    <id>blws-central</id>
                     <url>http://ap.kfems.net:22281/repository/maven-central/</url>
                 </repository>
                 <repository>
-                    <id>ls-snapshot</id>
+                    <id>blws-snapshot</id>
                     <url>http://ap.kfems.net:22281/repository/maven-snapshots/</url>
                 </repository>
                 <repository>
-                    <id>ls-releases</id>
+                    <id>blws-releases</id>
                     <url>http://ap.kfems.net:22281/repository/maven-releases/</url>
                 </repository>
             </repositories>
@@ -147,9 +147,9 @@ If you have run out of energy or time for your project, put a note at the top of
 
     <servers>
         <server>
-            <id>ls</id>
+            <id>blws</id>
             <username>blws</username>
-            <password>lsmes0201</password>
+            <password>blwsmes0201</password>
         </server>
     </servers>
 </settings>
@@ -161,20 +161,20 @@ If you have run out of energy or time for your project, put a note at the top of
 ...
 <repositories>
         <repository>
-            <id>ls-infra</id>
+            <id>blws-infra</id>
             <url>http://ap.kfems.net:22281/repository/maven-infra/</url>
         </repository>
     </repositories>
 
     <distributionManagement>
         <snapshotRepository>
-            <id>ls</id>
-            <name>ls-snapshot</name>
+            <id>blws</id>
+            <name>blws-snapshot</name>
             <url>http://ap.kfems.net:22281/repository/maven-snapshots/</url>
         </snapshotRepository>
         <repository>
-            <id>ls</id>
-            <name>ls-release</name>
+            <id>blws</id>
+            <name>blws-release</name>
             <url>http://ap.kfems.net:22281/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
@@ -189,19 +189,19 @@ mvn clean install compile deploy -Dmaven.test.skip=true -P dev
 2. 서버 경로 및 Start,Stop Script
 - Application 경로
 ```
-cd /home/lsitcuser/LSMES/sf_framework_back
+cd /home/blwsuser/BLWS/sf_framework_back
 ```
 - start.sh
 ```
 #!/bin/bash
-nohup $JAVA_HOME/bin/java -Dserver.port=22286 -Dspring.profiles.active=dev -jar /home/lsitcuser/LSMES/sf_framework_back/backend-0.0.2.jar &
-nohup $JAVA_HOME/bin/java -Dserver.port=22287 -Dspring.profiles.active=dev -jar /home/lsitcuser/LSMES/sf_framework_back/backend-0.0.2.jar &
+nohup $JAVA_HOME/bin/java -Dserver.port=22286 -Dspring.profiles.active=dev -jar /home/blwsuser/BLWS/sf_framework_back/backend-0.0.2.jar &
+nohup $JAVA_HOME/bin/java -Dserver.port=22287 -Dspring.profiles.active=dev -jar /home/blwsuser/BLWS/sf_framework_back/backend-0.0.2.jar &
 ```
 - stop.sh
 ```
 #!/bin/bash
-echo "LSITC Back-End stoping..."
+echo "BLWS Back-End stoping..."
 APP_PID=$(ps -ef | grep java | grep backend-0.0.1-SNAPSHOT.jar | grep -v grep | awk '{print $2}')
 kill -KILL $APP_PID
-echo "LSITC Back-end stoped..."
+echo "BLWS Back-end stoped..."
 ```
