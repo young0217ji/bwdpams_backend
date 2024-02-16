@@ -1,7 +1,7 @@
 spring:
   datasource:
     #url: jdbc:log4jdbc:sqlserver://58.121.116.137:1433;DatabaseName=BW_MES;encrypt=false;trustServerCertificate=false
-    url: jdbc:log4jdbc:sqlserver://localhost:1433;DatabaseName=DP_MES;encrypt=false;trustServerCertificate=false
+    url: jdbc:log4jdbc:sqlserver://172.168.0.220:1433;DatabaseName=DPMES;encrypt=false;trustServerCertificate=false
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     #username: mes
     #password: mes
