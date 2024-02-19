@@ -1,7 +1,7 @@
 spring:
   datasource:
     #url: jdbc:log4jdbc:sqlserver://58.121.116.137:1433;DatabaseName=BW_MES;encrypt=false;trustServerCertificate=false
-    url: jdbc:log4jdbc:sqlserver://localhost:1433;DatabaseName=DP_MES;encrypt=false;trustServerCertificate=false
+    url: jdbc:log4jdbc:sqlserver://172.168.0.220:1433;DatabaseName=DPMES;encrypt=false;trustServerCertificate=false
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     #username: mes
     #password: mes
@@ -25,8 +25,8 @@ spring:
       template:
         receive-timeout: 300000
         default-destination: "mesTopic"
-        subject: "DEV.KR.BW.MES.MESsvr.1"
-        prefix-client-id: "DEV.KR.BW.MES.UI-"
+        subject: "DEV.KR.G01.MES.TESTsvr.1"
+        prefix-client-id: "DEV.KR.G01.MES.UI-"
 
   jwt:
     header: Authorization
@@ -34,7 +34,7 @@ spring:
     token-access-validity-in-seconds: 86400 # 24 Hour 86400
     token-refresh-validity-in-seconds: 604800 # 1 Week 604800
   cors:
-    allowed-origins: 'http://localhost:8080,http://localhost:3000,http://ap.kfems.net:22288,http://localhost:22288,http://localhost:22286,http://localhost:22287,http://ap.kfems.net:22286,http://ap.kfems.net:22287,http://210.90.165.89:22288'
+    allowed-origins: 'http://localhost:8090,http://localhost:8080,http://localhost:3000,http://ap.kfems.net:22288,http://localhost:22288,http://localhost:22286,http://localhost:22287,http://ap.kfems.net:22286,http://ap.kfems.net:22287,http://210.90.165.89:22288'
     allowed-methods: '*'
     allowed-headers: '*'
     exposed-headers: 'authorization'
