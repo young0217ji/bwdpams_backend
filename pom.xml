@@ -61,44 +61,44 @@
         </dependency>
 
         <!-- 표준프레임워크 실행환경 -->
-        <dependency>
-            <groupId>org.egovframe.rte</groupId>
-            <artifactId>org.egovframe.rte.ptl.mvc</artifactId>
-            <version>${org.egovframe.rte.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>commons-logging</artifactId>
-                    <groupId>commons-logging</groupId>
-                </exclusion>
-                <!-- LS ITC에서 Logback을 사용하기 위해 exclusion -->
-                <exclusion>
-                    <artifactId>org.egovframe.rte.fdl.logging</artifactId>
-                    <groupId>org.egovframe.rte</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.egovframe.rte</groupId>
-            <artifactId>org.egovframe.rte.psl.dataaccess</artifactId>
-            <version>${org.egovframe.rte.version}</version>
-            <exclusions>
-                <!-- LS ITC에서 Logback을 사용하기 위해 exclusion -->
-                <exclusion>
-                    <artifactId>org.egovframe.rte.fdl.logging</artifactId>
-                    <groupId>org.egovframe.rte</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.egovframe.rte</groupId>
-            <artifactId>org.egovframe.rte.fdl.idgnr</artifactId>
-            <version>${org.egovframe.rte.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.egovframe.rte</groupId>
-            <artifactId>org.egovframe.rte.fdl.property</artifactId>
-            <version>${org.egovframe.rte.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.egovframe.rte</groupId>-->
+<!--            <artifactId>org.egovframe.rte.ptl.mvc</artifactId>-->
+<!--            <version>${org.egovframe.rte.version}</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>commons-logging</artifactId>-->
+<!--                    <groupId>commons-logging</groupId>-->
+<!--                </exclusion>-->
+<!--                 LS ITC에서 Logback을 사용하기 위해 exclusion -->
+<!--                <exclusion>-->
+<!--                    <artifactId>org.egovframe.rte.fdl.logging</artifactId>-->
+<!--                    <groupId>org.egovframe.rte</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.egovframe.rte</groupId>-->
+<!--            <artifactId>org.egovframe.rte.psl.dataaccess</artifactId>-->
+<!--            <version>${org.egovframe.rte.version}</version>-->
+<!--            <exclusions>-->
+<!--                 LS ITC에서 Logback을 사용하기 위해 exclusion -->
+<!--                <exclusion>-->
+<!--                    <artifactId>org.egovframe.rte.fdl.logging</artifactId>-->
+<!--                    <groupId>org.egovframe.rte</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.egovframe.rte</groupId>-->
+<!--            <artifactId>org.egovframe.rte.fdl.idgnr</artifactId>-->
+<!--            <version>${org.egovframe.rte.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.egovframe.rte</groupId>-->
+<!--            <artifactId>org.egovframe.rte.fdl.property</artifactId>-->
+<!--            <version>${org.egovframe.rte.version}</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>javax.servlet</groupId>
