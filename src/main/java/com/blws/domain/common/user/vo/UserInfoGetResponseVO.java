@@ -11,31 +11,31 @@ public class UserInfoGetResponseVO {
 
   private final String userId;
   private final String name;
-  private final String email;
-  private final String phoneNumber;
+  private final String eml;
+  private final String phoneNo;
   private final String roleId;
-  private final String plantId;
+  private final String factoryId;
 
   @Builder
-  private UserInfoGetResponseVO(String userId, String name, String email,
-      String phoneNumber, String roleId, String plantId) {
+  private UserInfoGetResponseVO(String userId, String name, String eml,
+      String phoneNo, String roleId, String factoryId) {
     super();
     this.userId = userId;
     this.name = name;
-    this.email = email;
-    this.phoneNumber = phoneNumber;
+    this.eml = eml;
+    this.phoneNo = phoneNo;
     this.roleId = roleId;
-    this.plantId = plantId;
+    this.factoryId = factoryId;
   }
 
   public static UserInfoGetResponseVO of(UserEntity resultEntity) {
     return builder()
         .userId(resultEntity.getUserId())
         .name(resultEntity.getName())
-        .email(resultEntity.getEmail())
-        .phoneNumber(resultEntity.getPhoneNumber())
+        .eml(resultEntity.getEml())
+        .phoneNo(resultEntity.getPhoneNo())
         .roleId(resultEntity.getRoleId())
-        .plantId(resultEntity.getPlantId())
+        .factoryId(resultEntity.getFactoryId())
         .build();
   }
 

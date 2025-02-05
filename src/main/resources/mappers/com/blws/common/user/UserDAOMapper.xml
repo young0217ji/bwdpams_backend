@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.blws.domain.common.user.dao.UserDAO">
+
   <select id="selectUserById"
     parameterType="com.blws.domain.common.user.entity.UserEntity"
     resultType="com.blws.domain.common.user.entity.UserEntity">
-    SELECT SU.userid
-         , SU.password
-         , SU.username AS name
-         , SU.email
-         , SU.phone_number
+    SELECT SU.USER_ID
+         , SU.PWD
+         , SU.USER_NM AS name
+         , SU.DEPT_ID
+         , D.DEPT_NM
+         , SU.EML
+         , SU.PHONE_NO
 <!--         , created_by
          , created_date
          , last_modified_by
@@ -18,27 +23,29 @@
          , is_deleted
          , deleted_by
          , deleted_date-->
-         , ISNULL(STUFF((SELECT ',' + SR.ROLEID
-                   FROM SF_ROLEUSERMAP SR, SF_ROLE R 
-                  WHERE SR.USERID = SU.USERID 
-                    AND SR.USEFLAG = 'Yes'
-                    AND SR.PLANTID = R.PLANTID
-                    AND SR.ROLEID = R.ROLEID
-                    AND R.ROLETYPE = 'MENU'
+         , ISNULL(STUFF((SELECT ',' + SR.ROLE_ID
+                   FROM SF_ROLE_USER_MAP SR, SF_ROLE R 
+                  WHERE SR.USER_ID = SU.USER_ID 
+                    AND SR.USE_FLAG = 'Yes'
+                    AND SR.FACTORY_ID = R.FACTORY_ID
+                    AND SR.ROLE_ID = R.ROLE_ID
+                    AND R.ROLE_TYPE = 'MENU'
                     FOR XML PATH('')
                   ), 1, 1, ''), 'Guest') AS role_id
-    FROM sf_user SU
-    WHERE SU.userid = #{userId}
+    FROM SF_USER SU LEFT OUTER JOIN BW_DEPT D ON SU.DEPT_ID = D.DEPT_ID
+    WHERE SU.USER_ID = #{userId}
   </select>
-  
+
   <select id="selectUserByIds"
     parameterType="com.blws.domain.common.user.entity.UserEntity"
     resultType="com.blws.domain.common.user.entity.UserEntity">
-    SELECT SU.userid
-         , SU.password
-         , SU.username AS name
-         , SU.email
-         , SU.phone_number
+    SELECT SU.USER_ID
+         , SU.PWD
+         , SU.USER_NM AS name
+         , SU.DEPT_ID
+         , D.DEPT_NM
+         , SU.EML
+         , SU.PHONE_NO
 <!--         , created_by
          , created_date
          , last_modified_by
@@ -46,30 +53,32 @@
          , is_deleted
          , deleted_by
          , deleted_date-->
-         , ISNULL(STUFF((SELECT ',' + SR.ROLEID
-                   FROM SF_ROLEUSERMAP SR, SF_ROLE R 
-                  WHERE SR.USERID = SU.USERID 
-                    AND SR.USEFLAG = 'Yes'
-                    AND SR.PLANTID = R.PLANTID
-                    AND SR.ROLEID = R.ROLEID
-                    AND R.ROLETYPE = 'MENU'
+         , ISNULL(STUFF((SELECT ',' + SR.ROLE_ID
+                   FROM SF_ROLE_USER_MAP SR, SF_ROLE R 
+                  WHERE SR.USER_ID = SU.USER_ID 
+                    AND SR.USE_FLAG = 'Yes'
+                    AND SR.FACTORY_ID = R.FACTORY_ID
+                    AND SR.ROLE_ID = R.ROLE_ID
+                    AND R.ROLE_TYPE = 'MENU'
                     FOR XML PATH('')
                   ), 1, 1, ''), 'Guest') AS role_id
-    FROM sf_user SU
+    FROM SF_USER SU LEFT OUTER JOIN BW_DEPT D ON SU.DEPT_ID = D.DEPT_ID
     WHERE
         <foreach collection="list" item="item" separator="OR">
-           SU.userid = #{item.userId}
+           SU.USER_ID = #{item.userId}
         </foreach>
   </select>
-  
+
   <select id="selectUserByUserId"
     parameterType="com.blws.domain.common.user.entity.UserEntity"
     resultType="com.blws.domain.common.user.entity.UserEntity">
-    SELECT DISTINCT SU.userid
-         , SU.password
-         , SU.username AS name
-         , SU.email
-         , SU.phone_number
+    SELECT DISTINCT SU.USER_ID
+         , SU.PWD
+         , SU.USER_NM AS name
+         , SU.DEPT_ID
+         , D.DEPT_NM
+         , SU.EML
+         , SU.PHONE_NO
 <!--         , created_by
          , created_date
          , last_modified_by
@@ -77,29 +86,32 @@
          , is_deleted
          , deleted_by
          , deleted_date-->
-         , SU.access_token
-         , SU.refresh_token
-         , SRU.PLANTID
-         , ISNULL(STUFF((SELECT ',' + SR.ROLEID
-                   FROM SF_ROLEUSERMAP SR, SF_ROLE R
-                  WHERE SR.USERID = SU.USERID
-                    AND SR.USEFLAG = 'Yes'
-                    AND SR.PLANTID = R.PLANTID
-                    AND SR.ROLEID = R.ROLEID
-                    AND R.ROLETYPE = 'MENU'
+         , SU.ACCES_TKN
+         , SU.REFRESH_TKN
+         , SRU.FACTORY_ID
+         , ISNULL(STUFF((SELECT ',' + SR.ROLE_ID
+                   FROM SF_ROLE_USER_MAP SR, SF_ROLE R
+                  WHERE SR.USER_ID = SU.USER_ID
+                    AND SR.USE_FLAG = 'Yes'
+                    AND SR.FACTORY_ID = R.FACTORY_ID
+                    AND SR.ROLE_ID = R.ROLE_ID
+                    AND R.ROLE_TYPE = 'MENU'
                     FOR XML PATH('')
                   ), 1, 1, ''), 'Guest') AS role_id
-    FROM sf_user SU INNER JOIN SF_ROLEUSERMAP SRU on SU.USERID = SRU.USERID
-    WHERE SU.userid = #{userId}
+         , DATEDIFF(DAY, GETDATE(), PWD_CHG_DT) AS PWDdate
+    FROM SF_USER SU INNER JOIN SF_ROLE_USER_MAP SRU on SU.USER_ID = SRU.USER_ID LEFT OUTER JOIN BW_DEPT D ON SU.DEPT_ID = D.DEPT_ID
+    WHERE SU.USER_ID = #{userId}
   </select>
 
   <select id="selectAll"
     resultType="com.blws.domain.common.user.entity.UserEntity">
-    SELECT SU.userid
-         , SU.password
-         , SU.username AS name
-         , SU.email
-         , SU.phone_number
+    SELECT SU.USER_ID
+         , SU.PWD
+         , SU.USER_NM AS name
+         , SU.DEPT_ID
+         , D.DEPT_NM
+         , SU.EML
+         , SU.PHONE_NO
 <!--         , created_by
          , created_date
          , last_modified_by
@@ -107,26 +119,28 @@
          , is_deleted
          , deleted_by
          , deleted_date-->
-         , ISNULL(STUFF((SELECT ',' + SR.ROLEID
-                   FROM SF_ROLEUSERMAP SR, SF_ROLE R 
-                  WHERE SR.USERID = SU.USERID 
-                    AND SR.USEFLAG = 'Yes'
-                    AND SR.PLANTID = R.PLANTID
-                    AND SR.ROLEID = R.ROLEID
-                    AND R.ROLETYPE = 'MENU'
+         , ISNULL(STUFF((SELECT ',' + SR.ROLE_ID
+                   FROM SF_ROLE_USER_MAP SR, SF_ROLE R 
+                  WHERE SR.USER_ID = SU.USER_ID 
+                    AND SR.USE_FLAG = 'Yes'
+                    AND SR.FACTORY_ID = R.FACTORY_ID
+                    AND SR.ROLE_ID = R.ROLE_ID
+                    AND R.ROLE_TYPE = 'MENU'
                     FOR XML PATH('')
                   ), 1, 1, ''), 'Guest') AS role_id
-    FROM sf_user SU
+    FROM SF_USER SU LEFT OUTER JOIN BW_DEPT D ON SU.DEPT_ID = D.DEPT_ID
   </select>
-  
+
   <select id="selectUserByConditions"
     parameterType="com.blws.domain.common.user.entity.UserEntity"
     resultType="com.blws.domain.common.user.entity.UserEntity">
-    SELECT SU.userid
-         , SU.password
-         , SU.username AS name
-         , SU.email
-         , SU.phone_number
+    SELECT SU.USER_ID
+         , SU.PWD
+         , SU.USER_NM AS NAME
+         , SU.DEPT_ID
+         , D.DEPT_NM
+         , SU.EML
+         , SU.PHONE_NO
 <!--         , created_by
          , created_date
          , last_modified_by
@@ -134,24 +148,33 @@
          , is_deleted
          , deleted_by
          , deleted_date-->
-         , ISNULL(STUFF((SELECT ',' + SR.ROLEID
-                   FROM SF_ROLEUSERMAP SR, SF_ROLE R 
-                  WHERE SR.USERID = SU.USERID 
-                    AND SR.USEFLAG = 'Yes'
-                    AND SR.PLANTID = R.PLANTID
-                    AND SR.ROLEID = R.ROLEID
-                    AND R.ROLETYPE = 'MENU'
+         , ISNULL(STUFF((SELECT ',' + SR.ROLE_ID
+                   FROM SF_ROLE_USER_MAP SR, SF_ROLE R 
+                  WHERE SR.USER_ID = SU.USER_ID 
+                    AND SR.USE_FLAG = 'Yes'
+                    AND SR.FACTORY_ID = R.FACTORY_ID
+                    AND SR.ROLE_ID = R.ROLE_ID
+                    AND R.ROLE_TYPE = 'MENU'
                     FOR XML PATH('')
                   ), 1, 1, ''), 'Guest') AS role_id
-    FROM sf_user SU
-    WHERE SU.useflag = 'Yes'
+    FROM SF_USER SU LEFT OUTER JOIN BW_DEPT D ON SU.DEPT_ID = D.DEPT_ID
+    WHERE SU.USE_FLAG = 'Yes'
     <if test="userId != null and userId != ''">
-       AND SU.userid LIKE CONCAT('%', #{userId}, '%')
+       AND SU.USER_ID LIKE CONCAT('%', #{userId}, '%')
     </if>
     <if test="name != null and name != ''">
-       AND SU.username LIKE CONCAT('%', #{name}, '%')
+       AND SU.USER_NM LIKE CONCAT('%', #{name}, '%')
     </if>
   </select>
+
+    <update id="updateUserToken"
+            parameterType="com.blws.domain.common.user.entity.UserEntity">
+        UPDATE SF_USER
+        SET ACCES_TKN     = #{accesTkn}
+          , REFRESH_TKN    = #{refreshTkn}
+        WHERE USER_ID = #{userId}
+    </update>
+</mapper>
 
 <!--  <insert id="insertUserList"
     parameterType="com.blws.domain.common.user.entity.UserEntity">
@@ -242,12 +265,3 @@
     WHERE id = #{item.id}
     </foreach>
   </update>-->
-
-    <update id="updateUserToken"
-            parameterType="com.blws.domain.common.user.entity.UserEntity">
-        UPDATE sf_user
-        SET access_token     = #{accessToken}
-          , refresh_token    = #{refreshToken}
-        WHERE userid = #{userId}
-    </update>
-</mapper>

@@ -11,25 +11,25 @@ public class AuthSuccessGetResponseVO {
 
   private final String userId;
   private final String name;
-  private final String email;
-  private final String phoneNumber;
-  private final String plantId;
-  private final String accessToken;
-  private final String refreshToken;
+  private final String eml;
+  private final String phoneNo;
+  private final String factoryId;
+  private final String accesTkn;
+  private final String refreshTkn;
   private final boolean isRefreshing;
   private final long maxAge;
 
   @Builder
-  private AuthSuccessGetResponseVO(String userId, String name, String email,
-      String phoneNumber, String plantId, String accessToken, String refreshToken,
+  private AuthSuccessGetResponseVO(String userId, String name, String eml,
+      String phoneNo, String factoryId, String accesTkn, String refreshTkn,
       boolean isRefreshing, long maxAge) {
     this.userId = userId;
     this.name = name;
-    this.email = email;
-    this.phoneNumber = phoneNumber;
-    this.plantId = plantId;
-    this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
+    this.eml = eml;
+    this.phoneNo = phoneNo;
+    this.factoryId = factoryId;
+    this.accesTkn = accesTkn;
+    this.refreshTkn = refreshTkn;
     this.isRefreshing = isRefreshing;
     this.maxAge = maxAge;
   }
@@ -38,11 +38,11 @@ public class AuthSuccessGetResponseVO {
     return builder()
         .userId(userEntity.getUserId())
         .name(userEntity.getName())
-        .email(userEntity.getEmail())
-        .phoneNumber(userEntity.getPhoneNumber())
-        .plantId(userEntity.getPlantId())
-        .accessToken(userEntity.getAccessToken())
-        .refreshToken(userEntity.getRefreshToken())
+        .eml(userEntity.getEml())
+        .phoneNo(userEntity.getPhoneNo())
+        .factoryId(userEntity.getFactoryId())
+        .accesTkn(userEntity.getAccesTkn())
+        .refreshTkn(userEntity.getRefreshTkn())
         .isRefreshing(false)
         .build();
   }
@@ -51,11 +51,11 @@ public class AuthSuccessGetResponseVO {
     return builder()
         .userId(userEntity.getUserId())
         .name(userEntity.getName())
-        .email(userEntity.getEmail())
-        .phoneNumber(userEntity.getPhoneNumber())
-        .plantId(userEntity.getPlantId())
-        .accessToken(userEntity.getAccessToken())
-        .refreshToken(userEntity.getRefreshToken())
+        .eml(userEntity.getEml())
+        .phoneNo(userEntity.getPhoneNo())
+        .factoryId(userEntity.getFactoryId())
+        .accesTkn(userEntity.getAccesTkn())
+        .refreshTkn(userEntity.getRefreshTkn())
         .maxAge(maxAge)
         .isRefreshing(false)
         .build();
@@ -66,11 +66,11 @@ public class AuthSuccessGetResponseVO {
     return builder()
         .userId(userEntity.getUserId())
         .name(userEntity.getName())
-        .email(userEntity.getEmail())
-        .phoneNumber(userEntity.getPhoneNumber())
-        .plantId(userEntity.getPlantId())
-        .accessToken(userEntity.getAccessToken())
-        .refreshToken(userEntity.getRefreshToken())
+        .eml(userEntity.getEml())
+        .phoneNo(userEntity.getPhoneNo())
+        .factoryId(userEntity.getFactoryId())
+        .accesTkn(userEntity.getAccesTkn())
+        .refreshTkn(userEntity.getRefreshTkn())
         .maxAge(maxAge)
         .isRefreshing(isRefreshing)
         .build();

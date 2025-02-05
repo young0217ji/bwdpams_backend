@@ -53,9 +53,9 @@ public class JWTTokenProvider {
 
   public static final String AUTHORIZATION_ACCESS_HEADER = "authorization";
 
-  public static final String AUTHORIZATION_ACCESS_TOKEN = "accessToken";
+  public static final String AUTHORIZATION_ACCESS_TOKEN = "accesTkn";
 
-  public static final String AUTHORIZATION_REFRESH_TOKEN = "refreshToken";
+  public static final String AUTHORIZATION_REFRESH_TOKEN = "refreshTkn";
 
 
   private final Key key;
@@ -96,7 +96,7 @@ public class JWTTokenProvider {
     this.tokenRefreshCookieMaxAge = (int) tokenRefreshValidityInSeconds;
   }
 
-  public String createAccessToken(Authentication authentication) {
+  public String createaccesTkn(Authentication authentication) {
 
     String authorities = authentication.getAuthorities().stream()
         .map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
@@ -114,7 +114,7 @@ public class JWTTokenProvider {
         .compact();
   }
 
-  public String createRefreshToken(Authentication authentication) {
+  public String createrefreshTkn(Authentication authentication) {
 
     String authorities = authentication.getAuthorities().stream()
         .map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
@@ -177,7 +177,7 @@ public class JWTTokenProvider {
     return false;
   }
 
-  public String resolveAccessToken(HttpServletRequest request) {
+  public String resolveaccesTkn(HttpServletRequest request) {
 
     String bearerToken = request.getHeader(AUTHORIZATION_ACCESS_HEADER);
     if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
@@ -196,7 +196,7 @@ public class JWTTokenProvider {
   }
 
 
-  public String resolveRefreshToken(HttpServletRequest request) {
+  public String resolverefreshTkn(HttpServletRequest request) {
     return Arrays.stream(request.getCookies())
         .filter(cookie -> this.AUTHORIZATION_REFRESH_TOKEN.equals(cookie.getName()))
         .findFirst()
@@ -205,33 +205,33 @@ public class JWTTokenProvider {
   }
 
 
-  public Boolean checkAccessToken(ServletRequest servletRequest, ServletResponse servletResponse) {
+  public Boolean checkaccesTkn(ServletRequest servletRequest, ServletResponse servletResponse) {
 
     HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-    String accessToken = this.resolveAccessToken(httpServletRequest);
-    String refreshToken = this.resolveRefreshToken(httpServletRequest);
+    String accesTkn = this.resolveaccesTkn(httpServletRequest);
+    String refreshTkn = this.resolverefreshTkn(httpServletRequest);
 
-    String userId = jwtParser.parseClaimsJws(accessToken).getBody().getId();
+    String userId = jwtParser.parseClaimsJws(accesTkn).getBody().getId();
 
     UserEntity userEntity = userDAO.selectUserByUserId(UserInfoGetRequestVO.builder()
         .userId(userId)
         .build().toEntity());
 
-    if (!(userEntity.getAccessToken().equals(accessToken) && userEntity.getRefreshToken()
-        .equals(refreshToken))) {
+    if (!(userEntity.getAccesTkn().equals(accesTkn) && userEntity.getRefreshTkn()
+        .equals(refreshTkn))) {
       return false;
     }
 
-    if (StringUtils.hasText(accessToken) && this.validateToken(accessToken)
-        && StringUtils.hasText(refreshToken) && this.validateToken(refreshToken)) {
+    if (StringUtils.hasText(accesTkn) && this.validateToken(accesTkn)
+        && StringUtils.hasText(refreshTkn) && this.validateToken(refreshTkn)) {
 
-      Date expirationDate = jwtParser.parseClaimsJws(accessToken).getBody().getExpiration();
+      Date expirationDate = jwtParser.parseClaimsJws(accesTkn).getBody().getExpiration();
 
       if (expirationDate.before(new Date())) {
-        this.setCookieAndSetToken(this.getAuthentication(accessToken),
+        this.setCookieAndSetToken(this.getAuthentication(accesTkn),
             (HttpServletResponse) servletResponse);
       } else {
-        Authentication authentication = this.getAuthentication(accessToken);
+        Authentication authentication = this.getAuthentication(accesTkn);
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
 
@@ -242,33 +242,33 @@ public class JWTTokenProvider {
     return false;
   }
 
-  public Boolean checkRefreshToken(ServletRequest servletRequest, ServletResponse servletResponse) {
+  public Boolean checkrefreshTkn(ServletRequest servletRequest, ServletResponse servletResponse) {
 
     HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-    String accessToken = this.resolveAccessToken(httpServletRequest);
-    String refreshToken = this.resolveRefreshToken(httpServletRequest);
+    String accesTkn = this.resolveaccesTkn(httpServletRequest);
+    String refreshTkn = this.resolverefreshTkn(httpServletRequest);
 
-    String userId = jwtParser.parseClaimsJws(accessToken).getBody().getId();
+    String userId = jwtParser.parseClaimsJws(accesTkn).getBody().getId();
 
     UserEntity userEntity = userDAO.selectUserByUserId(UserInfoGetRequestVO.builder()
         .userId(userId)
         .build().toEntity());
 
-    if (!(userEntity.getAccessToken().equals(accessToken) && userEntity.getRefreshToken()
-        .equals(refreshToken))) {
+    if (!(userEntity.getAccesTkn().equals(accesTkn) && userEntity.getRefreshTkn()
+        .equals(refreshTkn))) {
       return false;
     }
 
-    if (StringUtils.hasText(accessToken) && this.validateToken(accessToken)
-        && StringUtils.hasText(refreshToken) && this.validateToken(refreshToken)) {
+    if (StringUtils.hasText(accesTkn) && this.validateToken(accesTkn)
+        && StringUtils.hasText(refreshTkn) && this.validateToken(refreshTkn)) {
 
-      Date expirationDate = jwtParser.parseClaimsJws(refreshToken).getBody().getExpiration();
+      Date expirationDate = jwtParser.parseClaimsJws(refreshTkn).getBody().getExpiration();
 
       if (expirationDate.before(new Date())) {
-        this.setCookieAndSetToken(this.getAuthentication(accessToken),
+        this.setCookieAndSetToken(this.getAuthentication(accesTkn),
             (HttpServletResponse) servletResponse);
       } else {
-        Authentication authentication = this.getAuthentication(accessToken);
+        Authentication authentication = this.getAuthentication(accesTkn);
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
 
@@ -302,22 +302,22 @@ public class JWTTokenProvider {
     this.removeJwtCookies(httpServletResponse);
 
     try {
-      String accessToken = this.resolveAccessToken(httpServletRequest);
-      String refreshToken = this.resolveAccessToken(httpServletRequest);
+      String accesTkn = this.resolveaccesTkn(httpServletRequest);
+      String refreshTkn = this.resolveaccesTkn(httpServletRequest);
       String userId = "";
 
-      if (StringUtils.hasText(accessToken) || StringUtils.hasText(refreshToken)) {
+      if (StringUtils.hasText(accesTkn) || StringUtils.hasText(refreshTkn)) {
         userId = jwtParser.parseClaimsJws(
-            StringUtils.hasText(accessToken) ? accessToken : refreshToken).getBody().getId();
+            StringUtils.hasText(accesTkn) ? accesTkn : refreshTkn).getBody().getId();
       }
 
-      Authentication authentication = this.getAuthentication(accessToken);
+      Authentication authentication = this.getAuthentication(accesTkn);
       SecurityContextHolder.getContext().setAuthentication(authentication);
 
       userService.updateUserToken(UserEntity.builder()
           .userId(userId)
-          .accessToken(null)
-          .refreshToken(null)
+          .accesTkn(null)
+          .refreshTkn(null)
           .build());
 
     } catch (Exception e) {
@@ -336,7 +336,7 @@ public class JWTTokenProvider {
       throw new UsernameNotFoundException(userId);
     }
 
-    if (!token.equals(user.getRefreshToken())) {
+    if (!token.equals(user.getRefreshTkn())) {
       throw new UsernameNotFoundException(userId);
     }
 
@@ -344,7 +344,7 @@ public class JWTTokenProvider {
         .map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
 
     long now = (new Date()).getTime();
-    String accessToken = Jwts
+    String accesTkn = Jwts
         .builder()
         .setId(user.getUserId())
         .setSubject(user.getUserId())
@@ -353,7 +353,7 @@ public class JWTTokenProvider {
         .setExpiration(new Date(now + this.tokenAccessValidityInSeconds))
         .compact();
 
-    String refreshToken = Jwts
+    String refreshTkn = Jwts
         .builder()
         .setId(user.getUserId())
         .setSubject(user.getUserId())
@@ -364,22 +364,22 @@ public class JWTTokenProvider {
 
     userService.updateUserToken(UserEntity.builder()
         .userId(user.getUserId())
-        .accessToken(accessToken)
-        .refreshToken(refreshToken)
+        .accesTkn(accesTkn)
+        .refreshTkn(refreshTkn)
         .build());
 
     UserEntity userEntity = UserEntity.builder()
-        .accessToken(accessToken)
-        .refreshToken(refreshToken)
+        .accesTkn(accesTkn)
+        .refreshTkn(refreshTkn)
         .userId(user.getUserId())
         .name(user.getName())
-        .email(user.getEmail())
-        .plantId(user.getPlantId())
-        .phoneNumber(user.getPhoneNumber())
+        .eml(user.getEml())
+        .factoryId(user.getFactoryId())
+        .phoneNo(user.getPhoneNo())
         .roleId(user.getRoleId())
         .build();
 
-    setJwtCookies(accessToken, refreshToken, httpServletResponse);
+    setJwtCookies(accesTkn, refreshTkn, httpServletResponse);
 
     return AuthSuccessGetResponseVO.of(userEntity, this.tokenAccessValidityInSeconds, true);
 
@@ -389,27 +389,27 @@ public class JWTTokenProvider {
       HttpServletResponse httpServletResponse) {
 
     try {
-      String accessToken = this.createAccessToken(authentication);
-      String refreshToken = this.createRefreshToken(authentication);
+      String accesTkn = this.createaccesTkn(authentication);
+      String refreshTkn = this.createrefreshTkn(authentication);
 
-      this.setJwtCookies(accessToken, refreshToken, httpServletResponse);
+      this.setJwtCookies(accesTkn, refreshTkn, httpServletResponse);
       SecurityContextHolder.getContext().setAuthentication(authentication);
       UserEntity authenticationUser = (UserEntity) authentication.getPrincipal();
 
       userService.updateUserToken(UserEntity.builder()
           .userId(authenticationUser.getUserId())
-          .accessToken(accessToken)
-          .refreshToken(refreshToken)
+          .accesTkn(accesTkn)
+          .refreshTkn(refreshTkn)
           .build());
 
       return UserEntity.builder()
-          .accessToken(accessToken)
-          .refreshToken(refreshToken)
+          .accesTkn(accesTkn)
+          .refreshTkn(refreshTkn)
           .userId(authenticationUser.getUserId())
           .name(authenticationUser.getName())
-          .email(authenticationUser.getEmail())
-          .plantId(authenticationUser.getPlantId())
-          .phoneNumber(authenticationUser.getPhoneNumber())
+          .eml(authenticationUser.getEml())
+          .factoryId(authenticationUser.getFactoryId())
+          .phoneNo(authenticationUser.getPhoneNo())
           .roleId(authenticationUser.getRoleId())
           .build();
 
@@ -419,18 +419,18 @@ public class JWTTokenProvider {
 
   }
 
-  private void setJwtCookies(String accessToken, String refreshToken,
+  private void setJwtCookies(String accesTkn, String refreshTkn,
       HttpServletResponse httpServletResponse) throws UnsupportedEncodingException {
 
-    httpServletResponse.addHeader(this.AUTHORIZATION_ACCESS_HEADER, "Bearer " + accessToken);
+    httpServletResponse.addHeader(this.AUTHORIZATION_ACCESS_HEADER, "Bearer " + accesTkn);
 
-    Cookie accessTokenCookie = new Cookie(AUTHORIZATION_ACCESS_TOKEN,
-        URLEncoder.encode(accessToken, "UTF-8"));
-    accessTokenCookie.setPath("/");
-    accessTokenCookie.setMaxAge(this.tokenAccessCookieMaxAge);
+    Cookie accesTknCookie = new Cookie(AUTHORIZATION_ACCESS_TOKEN,
+        URLEncoder.encode(accesTkn, "UTF-8"));
+    accesTknCookie.setPath("/");
+    accesTknCookie.setMaxAge(this.tokenAccessCookieMaxAge);
 
-    ResponseCookie refreshTokenCookie = ResponseCookie.from(AUTHORIZATION_REFRESH_TOKEN,
-            URLEncoder.encode(refreshToken, "UTF-8"))
+    ResponseCookie refreshTknCookie = ResponseCookie.from(AUTHORIZATION_REFRESH_TOKEN,
+            URLEncoder.encode(refreshTkn, "UTF-8"))
         .path("/")
 //                .sameSite("None")
         .httpOnly(false)
@@ -438,8 +438,8 @@ public class JWTTokenProvider {
         .maxAge(this.tokenAccessCookieMaxAge)
         .build();
 
-    httpServletResponse.addHeader("Set-Cookie", refreshTokenCookie.toString());
-    httpServletResponse.addCookie(accessTokenCookie);
+    httpServletResponse.addHeader("Set-Cookie", refreshTknCookie.toString());
+    httpServletResponse.addCookie(accesTknCookie);
 
   }
 
@@ -447,16 +447,16 @@ public class JWTTokenProvider {
     try {
       httpServletResponse.addHeader(this.AUTHORIZATION_ACCESS_HEADER, null);
 
-      Cookie refreshTokenCookie = new Cookie(AUTHORIZATION_ACCESS_TOKEN, null);
-      refreshTokenCookie.setPath("/");
-      refreshTokenCookie.setMaxAge(0);
+      Cookie refreshTknCookie = new Cookie(AUTHORIZATION_ACCESS_TOKEN, null);
+      refreshTknCookie.setPath("/");
+      refreshTknCookie.setMaxAge(0);
 
-      Cookie accessTokenCookie = new Cookie(AUTHORIZATION_REFRESH_TOKEN, null);
-      accessTokenCookie.setPath("/");
-      accessTokenCookie.setMaxAge(0);
+      Cookie accesTknCookie = new Cookie(AUTHORIZATION_REFRESH_TOKEN, null);
+      accesTknCookie.setPath("/");
+      accesTknCookie.setMaxAge(0);
 
-      httpServletResponse.addCookie(refreshTokenCookie);
-      httpServletResponse.addCookie(accessTokenCookie);
+      httpServletResponse.addCookie(refreshTknCookie);
+      httpServletResponse.addCookie(accesTknCookie);
     } catch (Exception e) {
       throw new SignatureException(e.getMessage());
     }

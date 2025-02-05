@@ -13,17 +13,17 @@ public class UserSearchListGetResponseVO {
 
 	private final String userId;
 	private final String name;
-	private final String email;
-	private final String phoneNumber;
+	private final String eml;
+	private final String phoneNo;
 	private final String roleId;
 
 	@Builder
-	private UserSearchListGetResponseVO(String userId, String name, String email,
-			String phoneNumber, String roleId) {
+	private UserSearchListGetResponseVO(String userId, String name, String eml,
+			String phoneNo, String roleId) {
 		this.userId = userId;
 		this.name = name;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
+		this.eml = eml;
+		this.phoneNo = phoneNo;
 		this.roleId = roleId;
 	}
 
@@ -31,8 +31,8 @@ public class UserSearchListGetResponseVO {
 		return builder()
 				.userId(resultEntity.getUserId())
 				.name(resultEntity.getName())
-				.email(resultEntity.getEmail())
-				.phoneNumber(resultEntity.getPhoneNumber())
+				.eml(resultEntity.getEml())
+				.phoneNo(resultEntity.getPhoneNo())
 				.roleId(resultEntity.getRoleId())
 				.build();
 	}

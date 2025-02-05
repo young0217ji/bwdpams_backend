@@ -21,27 +21,27 @@ public class UserEntity extends BaseAbstractEntity
   private static final long serialVersionUID = 7428290075155619330L;
 
   private String userId;
-  private String password;
+  private String pwd;
   private String name;
-  private String email;
-  private String phoneNumber;
-  private String accessToken;
-  private String refreshToken;
+  private String eml;
+  private String phoneNo;
+  private String accesTkn;
+  private String refreshTkn;
   private String roleId;
-  private String plantId;
+  private String factoryId;
 
   @Builder
-  private UserEntity(String userId, String password, String name, String email,
-      String phoneNumber, String accessToken, String refreshToken, String roleId, String plantId) {
+  private UserEntity(String userId, String pwd, String name, String eml,
+      String phoneNo, String accesTkn, String refreshTkn, String roleId, String factoryId) {
     this.userId = userId;
-    this.password = password;
+    this.pwd = pwd;
     this.name = name;
-    this.email = email;
-    this.phoneNumber = phoneNumber;
-    this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
+    this.eml = eml;
+    this.phoneNo = phoneNo;
+    this.accesTkn = accesTkn;
+    this.refreshTkn = refreshTkn;
     this.roleId = roleId;
-    this.plantId = plantId;
+    this.factoryId = factoryId;
   }
 
   // Guest 사용 로직 사용불가
@@ -60,12 +60,12 @@ public class UserEntity extends BaseAbstractEntity
 
   @Override
   public String getPassword() {
-    return this.password;
+    return this.pwd;
   }
 
   @Override
   public String getUsername() {
-    return this.userId;
+    return this.name;
   }
 
   @Override

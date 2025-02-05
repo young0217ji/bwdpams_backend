@@ -28,7 +28,7 @@ public class JWTFilter extends GenericFilterBean {
             throws IOException, ServletException {
         try {
 
-            if(!this.jWTTokenProvider.checkAccessToken(servletRequest,servletResponse)){
+            if(!this.jWTTokenProvider.checkaccesTkn(servletRequest,servletResponse)){
                 this.setErrorResponse(HttpStatus.UNAUTHORIZED,(HttpServletRequest) servletRequest, (HttpServletResponse) servletResponse);
             }
 
