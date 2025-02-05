@@ -65,7 +65,7 @@ public class UserEntity extends BaseAbstractEntity
 
   @Override
   public String getUsername() {
-    return this.name;
+    return this.userId;
   }
 
   @Override

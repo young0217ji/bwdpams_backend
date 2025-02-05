@@ -6,79 +6,80 @@
   <select id="selectMenuByConditions"
     parameterType="com.blws.domain.common.menu.entity.MenuEntity"
     resultType="com.blws.domain.common.menu.entity.MenuEntity">
-    SELECT DISTINCT SM.PLANTID
-         , SM.MENUID
-         , SM.MENUNAME
-         , SM.MENUNAME_EN AS MENUNAMEEN
-         , IIF(SM.PARENTSID = '', NULL, SM.PARENTSID) AS PARENTSID
+    SELECT DISTINCT SM.FACTORY_ID
+         , SM.MENU_ID
+         , SM.MENU_NM
+         , SM.MENU_NM_EN
+         , IIF(SM.PRNT_SID = '', NULL, SM.PRNT_SID) AS PRNT_SID
          , SM.URL
-         , SM.USEFLAG
-         , SM.POSITION
-         , #{roleId} AS ROLEID
-         , SM.ICON_CLASS AS ICONCLASS
-    FROM SF_MENU SM, SF_ROLEMENUMAP SRM, SF_ROLE SR
-    WHERE SM.USEFLAG = #{useFlag}
-    AND SM.MENUID = SRM.MENUID
-    AND SM.MENUTYPE = 'MES'
-    AND SRM.ROLEID IN (SELECT * FROM STRING_SPLIT(#{roleId}, ','))
-    AND SRM.PLANTID = SR.PLANTID
-    AND SRM.ROLEID = SR.ROLEID
-    AND SR.ROLETYPE = 'MENU'
+         , SM.USE_FLAG
+         , SM.POS
+         , #{roleId} AS ROLE_ID
+         , SM.ICON_CLASS
+    FROM SF_MENU SM, SF_ROLE_MENU_MAP SRM, SF_ROLE SR
+    WHERE SM.USE_FLAG = #{useFlag}
+    AND SM.MENU_ID = SRM.MENU_ID
+    AND SM.MENU_TYPE = 'MES'
+    AND SRM.ROLE_ID IN (SELECT * FROM STRING_SPLIT(#{roleId}, ','))
+    AND SRM.FACTORY_ID = SR.FACTORY_ID
+    AND SRM.ROLE_ID = SR.ROLE_ID
+    AND SR.ROLE_TYPE = 'MENU'
     UNION ALL 
-    SELECT UM.PLANTID,
-		   UM.MENUID+'a' AS MENUID,
-		   M.MENUNAME,
-		   M.MENUNAME_EN AS MENUNAMEEN,
-		   '00' AS PARENTSID,
+    SELECT UM.FACTORY_ID,
+		   UM.MENU_ID+'a' AS MENU_ID,
+		   M.MENU_NM,
+		   M.MENU_NM_EN,
+		   '00' AS PRNT_SID,
 		   M.URL,
-		   'Yes' AS USEFLAG,
-		   UM.MENUSEQUENCE AS POSITION,
-		   #{roleId} AS ROLEID,
-		   NULL AS ICONCLASS
-	FROM SF_USERMENU UM, SF_MENU M
-	WHERE UM.MENUID = M.MENUID
-	AND UM.USERID = #{userId}
-    ORDER BY POSITION
+		   'Yes' AS USE_FLAG,
+		   UM.MENU_SEQ AS POS,
+		   #{roleId} AS ROLE_ID,
+		   NULL AS ICON_CLASS
+	FROM SF_USER_MENU UM, SF_MENU M
+	WHERE UM.MENU_ID = M.MENU_ID
+	AND UM.USER_ID = #{userId}
+    ORDER BY POS
   </select>
   
   <select id="selectMenuById"
     parameterType="com.blws.domain.common.menu.entity.MenuEntity"
     resultType="com.blws.domain.common.menu.entity.MenuEntity">
-    SELECT DISTINCT SM.PLANTID
-         , SM.MENUID
-         , SM.MENUNAME
-         , SM.MENUNAME_EN AS MENUNAMEEN
-         , IIF(SM.PARENTSID = '', NULL, SM.PARENTSID) AS PARENTSID
+    SELECT DISTINCT SM.FACTORY_ID
+         , SM.MENU_ID
+         , SM.MENU_NM
+         , SM.MENU_NM_EN
+         , IIF(SM.PRNT_SID = '', NULL, SM.PRNT_SID) AS PRNT_SID
          , SM.URL
-         , SM.USEFLAG
-         , SM.POSITION
-         , '' AS ROLEID
-         , SM.ICON_CLASS AS ICONCLASS
+         , SM.USE_FLAG
+         , SM.POS
+         , '' AS ROLE_ID
+         , SM.ICON_CLASS
     FROM SF_MENU SM
-    WHERE SM.USEFLAG = #{useFlag}
-    AND SM.MENUID = #{menuID}
-    AND SM.MENUTYPE = 'MES'
-    ORDER BY SM.POSITION
+    WHERE 1=1
+    WHERE SM.USE_FLAG = #{useFlag}
+    AND SM.MENU_ID = #{menuId}
+    AND SM.MENU_TYPE = 'MES'
+    ORDER BY SM.POS
   </select>
 
   <select id="selectAll"
     resultType="com.blws.domain.common.menu.entity.MenuEntity">
-    SELECT DISTINCT SM.PLANTID
-         , SM.MENUID
-         , SM.MENUNAME
-         , SM.MENUNAME_EN AS MENUNAMEEN
-         , IIF(SM.PARENTSID = '', NULL, SM.PARENTSID) AS PARENTSID
+    SELECT DISTINCT SM.FACTORY_ID
+         , SM.MENU_ID
+         , SM.MENU_NM
+         , SM.MENU_NM_EN
+         , IIF(SM.PRNT_SID = '', NULL, SM.PRNT_SID) AS PRNT_SID
          , SM.URL
-         , SM.USEFLAG
-         , SM.POSITION
-         , '' AS ROLEID
-         , SM.ICON_CLASS AS ICONCLASS
+         , SM.USE_FLAG
+         , SM.POS
+         , '' AS ROLE_ID
+         , SM.ICON_CLASS
     FROM SF_MENU SM
-    WHERE SM.USEFLAG = #{useFlag}
-    AND SM.MENUTYPE = 'MES'
+    WHERE SM.USE_FLAG = #{useFlag}
+    AND SM.MENU_TYPE = 'MES'
     <!-- 권한별 메뉴 목록 실패시 전체 메뉴 Load 되지 않도록 하기 위한 추가 조건 -->
     AND 1 != 1
-    ORDER BY SM.POSITION
+    ORDER BY SM.POS
   </select>
 
 <!--  <insert id="insertMenuList"

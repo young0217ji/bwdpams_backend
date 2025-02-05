@@ -12,10 +12,10 @@ public class CustomQueryBuilder {
    */
   public String selectCustomQuery() {
     return new SQL().SELECT("*")
-        .FROM("customquery")
-        .WHERE("PLANTID=#{plantid}")
-        .WHERE("QUERYID=#{queryid}")
-        .WHERE("QUERYVERSION=#{queryversion}")
+        .FROM("CUSTOMQRY")
+        .WHERE("FACTORY_ID=#{plantid}")
+        .WHERE("QRY_ID=#{queryid}")
+        .WHERE("QRY_VER=#{queryversion}")
         .toString();
   }
 

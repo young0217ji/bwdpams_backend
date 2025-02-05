@@ -10,14 +10,14 @@ import lombok.Getter;
 @Getter
 public class MenuTreeVO extends TreeAbstractVO {
 
-	private final String plantID;
+	private final String factoryId;
 	private final String menuId;
-	private final String menuName;
-	private final String menuNameEN;
+	private final String menuNm;
+	private final String menuNmEn;
 	private final String upMenuId;
 	private final String url;
 	private final String useFlag;
-	private final int position;
+	private final int pos;
 	private final String text;
 	private final boolean expanded;
 	private final boolean selected;
@@ -26,16 +26,16 @@ public class MenuTreeVO extends TreeAbstractVO {
 	private final String path;
 
 	@Builder
-	private MenuTreeVO(String plantID, String menuId, String menuName, String menuNameEN, String upMenuId, String url,
-			String useFlag, int position, String text, boolean expanded, boolean selected, String roleId, String iconClass, String path) {
-		this.plantID = plantID;
+	private MenuTreeVO(String factoryId, String menuId, String menuNm, String menuNmEn, String upMenuId, String url,
+			String useFlag, int pos, String text, boolean expanded, boolean selected, String roleId, String iconClass, String path) {
+		this.factoryId = factoryId;
 		this.menuId = menuId;
-		this.menuName = menuName;
-		this.menuNameEN = menuNameEN;
+		this.menuNm = menuNm;
+		this.menuNmEn = menuNmEn;
 		this.upMenuId = upMenuId;
 		this.url = url;
 		this.useFlag = useFlag;
-		this.position = position;
+		this.pos = pos;
 		this.text = text;
 		this.expanded = expanded;
 		this.selected = selected;
@@ -50,14 +50,14 @@ public class MenuTreeVO extends TreeAbstractVO {
 
 	public static MenuTreeVO of(MenuEntity menuEntity, String locale, boolean isHorizontal) {
 		return builder()
-				.plantID(menuEntity.getPlantID())
-				.menuId(menuEntity.getMenuID())
-				.menuName(getNameByLocale(menuEntity, locale))
-				.menuNameEN(menuEntity.getMenuNameEN())
-				.upMenuId(menuEntity.getParentsId())
+				.factoryId(menuEntity.getFactoryId())
+				.menuId(menuEntity.getMenuId())
+				.menuNm(getNameByLocale(menuEntity, locale))
+				.menuNmEn(menuEntity.getMenuNmEn())
+				.upMenuId(menuEntity.getPrntSid())
 				.url(isHorizontal ? null : menuEntity.getUrl())
 				.useFlag(menuEntity.getUseFlag())
-				.position(menuEntity.getPosition())
+				.pos(menuEntity.getPos())
 				.text(getNameByLocale(menuEntity, locale))
 				.expanded(false)
 				.selected(false)
@@ -72,8 +72,8 @@ public class MenuTreeVO extends TreeAbstractVO {
 	}
 
 	private static String getNameByLocale(MenuEntity menuEntity, String locale) {
-		return "ko-KR".equals(locale) ? menuEntity.getMenuName()
-				: "en-US".equals(locale) ? menuEntity.getMenuNameEN() : menuEntity.getMenuName();
+		return "ko-KR".equals(locale) ? menuEntity.getMenuNm()
+				: "en-US".equals(locale) ? menuEntity.getMenuNmEn() : menuEntity.getMenuNm();
 	}
 
 	@Override
