@@ -283,7 +283,7 @@ public class ActiveMqService {
 					activeMqGetQueryRequestBodyVO.setEventuser(userId);
 
 					map = new HashMap<>();
-					map.put("PLANTID", activeMqGetQueryRequestBodyVO.getPlantid());
+					map.put("FACTORYID", activeMqGetQueryRequestBodyVO.getFactoryid());
 					map.put("QUERYID", activeMqGetQueryRequestBodyVO.getQueryid());
 					map.put("QUERYVERSION", activeMqGetQueryRequestBodyVO.getQueryversion());
 					map.put("LANGUAGE", activeMqGetQueryRequestBodyVO.getLanguage());
@@ -343,7 +343,7 @@ public class ActiveMqService {
 					map = new HashMap<>();
 
 					String messageName = activeMqDataManageRequestBodyVO.getMessagename();
-					String plantid = activeMqDataManageRequestBodyVO.getPlantid();
+					String factoryid = activeMqDataManageRequestBodyVO.getFactoryid();
 					String processRouteId = activeMqDataManageRequestBodyVO.getProcessrouteid();
 
 					Object oParamV = activeMqDataManageRequestBodyVO.getParamv();
@@ -397,7 +397,7 @@ public class ActiveMqService {
 					}
 
 					map.put("EVENTUSER",evsentUser);
-					map.put("PLANTID",plantid);
+					map.put("FACTORY",factoryid);
 					map.put("PROCESSROUTEID",processRouteId);
 					map.put("DATALIST",((ActiveMqDataManageRequestBodyVO) body).getDatalist());
 

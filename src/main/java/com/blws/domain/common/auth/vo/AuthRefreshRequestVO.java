@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @AllArgsConstructor
 public class AuthRefreshRequestVO {
 
-  private String refreshToken;
+  private String refreshTkn;
 
   @Override
   public String toString() {

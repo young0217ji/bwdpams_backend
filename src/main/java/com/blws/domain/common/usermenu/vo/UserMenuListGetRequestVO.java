@@ -11,12 +11,12 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class UserMenuListGetRequestVO {
-	private final String plantId;
+	private final String factoryId;
 	private final String userId;
 	
 	public UserMenuEntity toEntity() {
 		return UserMenuEntity.builder()
-				.plantId(plantId)
+				.factoryId(factoryId)
 				.userId(userId)
 				.build();
 	}

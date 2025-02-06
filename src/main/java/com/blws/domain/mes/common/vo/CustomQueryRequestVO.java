@@ -21,9 +21,9 @@ public class CustomQueryRequestVO {
   @JsonIgnoreProperties(ignoreUnknown = true)
   private String queryid;
 
-  @JsonProperty(value = "PLANTID")
+  @JsonProperty(value = "FACTORYID")
   @JsonIgnoreProperties(ignoreUnknown = true)
-  private String plantid;
+  private String factoryid;
 
   @JsonProperty(value = "EVENTUSER")
   @JsonIgnoreProperties(ignoreUnknown = true)

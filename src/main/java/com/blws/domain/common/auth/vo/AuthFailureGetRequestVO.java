@@ -12,7 +12,7 @@ import lombok.Getter;
 public class AuthFailureGetRequestVO {
 
 	private final String userId;
-	private final String password;
+	private final String pwd;
 
 	@Override
 	public String toString() {

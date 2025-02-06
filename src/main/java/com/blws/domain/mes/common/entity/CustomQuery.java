@@ -14,7 +14,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class CustomQuery {
 
-  private String plantid;
+  private String factoryid;
   private String queryid;
   private String queryversion;
   private String querystring;

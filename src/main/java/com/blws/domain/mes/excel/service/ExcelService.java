@@ -51,7 +51,7 @@ public class ExcelService {
 
     CustomQuery findQuery = customQueryDao.selectByCustomQuery(
         CustomQuery.builder()
-            .plantid(requestVO.getPlantid())
+            .factoryid(requestVO.getFactoryid())
             .queryid(GRID_DETAIL_QUERY_ID)
             .queryversion(params.getOrDefault("GRIDQUERYVERSION", "00001").toString())
             .build());

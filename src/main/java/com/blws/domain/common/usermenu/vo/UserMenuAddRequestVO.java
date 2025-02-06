@@ -11,7 +11,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class UserMenuAddRequestVO {
-	private final String plantId;
+	private final String factoryId;
 	private final String userId;
 	private final String menuId;
 	private final int menuSequence;
@@ -19,7 +19,7 @@ public class UserMenuAddRequestVO {
 	
 	public UserMenuEntity toEntity() {
 		return UserMenuEntity.builder()
-				.plantId(plantId)
+				.factoryId(factoryId)
 				.userId(userId)
 				.menuId(menuId)
 				.menuSequence(menuSequence)

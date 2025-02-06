@@ -284,7 +284,7 @@ public class JWTTokenProvider {
 
     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
         loginVM.getUserId(),
-        loginVM.getPassword()
+        loginVM.getPwd()
     );
 
     Authentication authentication = authenticationManagerBuilder.getObject()

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserMenuEntity extends BaseAbstractEntity{
 
-	private String plantId;
+	private String factoryId;
 	private String userId;
 	private String menuId;
 	private String menuName;
@@ -20,8 +20,8 @@ public class UserMenuEntity extends BaseAbstractEntity{
 	private String flag;
 	
 	@Builder
-	private UserMenuEntity(String plantId, String userId, String menuId, String menuName, String url, int menuSequence, String flag) {
-		this.plantId = plantId;
+	private UserMenuEntity(String factoryId, String userId, String menuId, String menuName, String url, int menuSequence, String flag) {
+		this.factoryId = factoryId;
 		this.userId = userId;
 		this.menuId = menuId;
 		this.menuName = menuName;

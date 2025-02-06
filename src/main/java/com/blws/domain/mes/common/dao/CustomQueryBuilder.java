@@ -13,7 +13,8 @@ public class CustomQueryBuilder {
   public String selectCustomQuery() {
     return new SQL().SELECT("*")
         .FROM("CUSTOMQRY")
-        .WHERE("FACTORY_ID=#{plantid}")
+        .WHERE("FACTORY_ID=#{factoryid}")
+//        .WHERE("FACTORY_ID=6000")
         .WHERE("QRY_ID=#{queryid}")
         .WHERE("QRY_VER=#{queryversion}")
         .toString();

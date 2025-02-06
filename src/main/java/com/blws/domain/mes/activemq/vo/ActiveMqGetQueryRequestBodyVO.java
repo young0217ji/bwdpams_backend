@@ -21,9 +21,9 @@ public class ActiveMqGetQueryRequestBodyVO {
   @JsonIgnoreProperties(ignoreUnknown = true)
   private String queryid;
 
-  @JsonProperty(value = "PLANTID")
+  @JsonProperty(value = "FACTORY")
   @JsonIgnoreProperties(ignoreUnknown = true)
-  private String plantid;
+  private String factoryid;
 
   @JsonProperty(value = "EVENTUSER")
   @JsonIgnoreProperties(ignoreUnknown = true)

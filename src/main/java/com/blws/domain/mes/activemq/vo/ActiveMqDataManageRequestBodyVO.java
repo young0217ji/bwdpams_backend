@@ -18,9 +18,9 @@ public class ActiveMqDataManageRequestBodyVO {
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String messagename;
 
-    @JsonProperty(value ="PLANTID")
+    @JsonProperty(value ="FACTORYID")
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private String plantid;
+    private String factoryid;
     
     @JsonProperty(value ="PROCESSROUTEID")
     @JsonIgnoreProperties(ignoreUnknown = true)

@@ -43,7 +43,7 @@ public class AuthController {
   public AuthSuccessGetResponseVO refresh(@Valid @RequestBody AuthRefreshRequestVO refreshToken,
       HttpServletResponse httpServletResponse)
       throws UnsupportedEncodingException {
-    return jWTTokenProvider.refresh(refreshToken.getRefreshToken(), httpServletResponse);
+    return jWTTokenProvider.refresh(refreshToken.getRefreshTkn(), httpServletResponse);
   }
 
 }

@@ -6,48 +6,50 @@
   <select id="selectUserMenuList"
     parameterType="com.blws.domain.common.usermenu.entity.UserMenuEntity"
     resultType="com.blws.domain.common.usermenu.entity.UserMenuEntity">
-    SELECT UM.MENUID, M.MENUNAME, M.URL, UM.MENUSEQUENCE
-    FROM SF_USERMENU UM, SF_MENU M
-    WHERE UM.MENUID = M.MENUID
-    AND UM.PLANTID = #{plantId}
-    AND UM.USERID = #{userId}
-    ORDER BY MENUSEQUENCE
+    SELECT UM.MENU_ID, M.MENU_NM, M.URL, UM.MENU_SEQ
+    FROM SF_USER_MENU UM, SF_MENU M
+    WHERE UM.MENU_ID = M.MENU_ID
+    AND UM.FACTORY_ID = #{factoryId}
+    AND UM.USER_ID = #{userId}
+    ORDER BY MENU_SEQ
   </select>
   
   <insert id="insertUserMenu" parameterType="com.blws.domain.common.usermenu.entity.UserMenuEntity">
-	  INSERT INTO SF_USERMENU(
-	  	PLANTID,
-	  	USERID,
-	  	MENUID,
-	  	MENUSEQUENCE,
-	  	CREATETIME,
-	  	CREATEUSERID,
-	  	LASTUPDATETIME,
-	  	LASTUPDATEUSERID
+	  INSERT INTO SF_USER_MENU(
+	  	FACTORY_ID,
+	  	USER_ID,
+	  	MENU_ID,
+	  	MENU_SEQ,
+        CRET_TM ,
+        CRET_USER_ID ,
+        LAST_UPD_TM ,
+        LAST_UPD_USER_ID
 	  )
 	  VALUES(
-	  	#{plantId},
+	  	#{factoryId},
 	  	#{userId},
 	  	#{menuId},
-	  	#{menuSequence},
+	  	#{menuSeq},
 	  	GETDATE(),
 	  	#{userId},
 	  	GETDATE(),
 	  	#{userId}
 	  )
   </insert>
+  
   <update id="updateUserMenu" parameterType="com.blws.domain.common.usermenu.entity.UserMenuEntity">
-	  UPDATE SF_USERMENU
-	  SET MENUSEQUENCE = #{menuSequence}, LASTUPDATETIME = GETDATE(), LASTUPDATEUSERID = #{userId}
-	  WHERE PLANTID = #{plantId}
-	  AND USERID = #{userId}
-	  AND MENUID = #{menuId}
+	  UPDATE SF_USER_MENU
+	  SET MENU_SEQ = #{menuSeq}, LAST_UPD_TM = GETDATE(), LAST_UPD_USER_ID = #{userId}
+	  WHERE FACTORY_ID = #{factoryId}
+	  AND USER_ID = #{userId}
+	  AND MENU_ID = #{menuId}
   </update>
+  
   <delete id="deleteUserMenu" parameterType="com.blws.domain.common.usermenu.entity.UserMenuEntity">
-	  DELETE FROM SF_USERMENU
-	  WHERE PLANTID = #{plantId}
-	  AND USERID = #{userId}
-	  AND MENUID = #{menuId}
+	  DELETE FROM SF_USER_MENU
+	  WHERE FACTORY_ID = #{factoryId}
+	  AND USER_ID = #{userId}
+	  AND MENU_ID = #{menuId}
   </delete>
   
   
